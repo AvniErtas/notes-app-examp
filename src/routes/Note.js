@@ -8,6 +8,7 @@ router.post("/list/", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
+
   await Note.deleteOne({ id: req.body.id });
 
   const newNote = new Note({
@@ -18,7 +19,9 @@ router.post("/add", async (req, res) => {
   });
 
   await newNote.save();
+
   const response = { message: "New Note Created!" + `id: ${req.body.id}` };
+  
   res.json(response);
 });
 
